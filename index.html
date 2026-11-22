@@ -4,274 +4,849 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#28104f">
-<title>For Peshoo — A Birthday Full of Love 💖</title>
+<meta name="theme-color" content="#16072e">
+
+<title>Happy Birthday Peshoo ❤️</title>
 
 <style>
-*{box-sizing:border-box}
-:root{--pink:#ff70b7;--violet:#9b72ff;--gold:#ffd978;--ink:#fff8ff}
-html{scroll-behavior:smooth}
-body{
- margin:0;min-height:100vh;color:var(--ink);
- font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
- background:linear-gradient(135deg,#170b3b,#39105c 45%,#112b60);
- overflow-x:hidden
+* {
+ box-sizing: border-box;
 }
-body:before{
- content:"";position:fixed;inset:0;pointer-events:none;
- background:radial-gradient(circle at 15% 20%,#ff70b72c,transparent 30%),
- radial-gradient(circle at 85% 75%,#65d9ff25,transparent 35%);
- z-index:0
+
+html {
+ scroll-behavior: smooth;
 }
-#sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
-.screen{
- position:relative;z-index:1;min-height:100svh;
- display:none;place-items:center;padding:26px 16px
+
+body {
+ margin: 0;
+ min-height: 100vh;
+ overflow-x: hidden;
+ font-family: 'Segoe UI', Arial, sans-serif;
+ color: white;
+ background:
+ radial-gradient(circle at 15% 15%, #64245f, transparent 35%),
+ radial-gradient(circle at 85% 80%, #183e78, transparent 40%),
+ linear-gradient(135deg, #16072e, #32104f, #091b3d);
 }
-.screen.active{display:grid;animation:pageIn .8s ease}
-.card{
- width:min(570px,100%);padding:clamp(25px,6vw,42px) clamp(19px,5vw,34px);
- text-align:center;border:1px solid #ffffff38;border-radius:30px;
- background:linear-gradient(145deg,#ffffff20,#ffffff0b);
- box-shadow:0 22px 80px #05001666,inset 0 1px #ffffff38;
- backdrop-filter:blur(16px)
+
+#sky {
+ position: fixed;
+ inset: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 1;
+ pointer-events: none;
 }
-.kicker{color:#ffd9f0;letter-spacing:3px;text-transform:uppercase;font-size:.75rem;font-weight:800}
-h1{
- font-size:clamp(2.55rem,11vw,4.5rem);line-height:1.02;
- margin:15px 0;color:#fff;
- text-shadow:0 0 22px #ff80c9a6,0 4px 30px #b56bff77
+
+.screen {
+ position: relative;
+ z-index: 2;
+ display: none;
+ min-height: 100vh;
+ min-height: 100svh;
+ padding: 25px 15px;
+ place-items: center;
 }
-h2{font-size:clamp(1.45rem,6vw,2.15rem);margin:12px 0;color:#ffe0f4}
-p{font-size:1.05rem;line-height:1.8;color:#fff0fb;max-width:470px;margin:13px auto}
-.sub{font-size:.92rem;color:#e5d7ff}
-.big-emoji{font-size:clamp(4rem,18vw,7rem);display:block;margin:12px 0;filter:drop-shadow(0 8px 24px #ff83cb70)}
-button{
- border:1px solid #ffffff55;border-radius:999px;padding:14px 24px;
- margin:13px 5px 0;color:#351044;
- background:linear-gradient(100deg,#ffe18c,#ff91c9 55%,#b99aff);
- font-weight:850;font-size:1rem;box-shadow:0 9px 30px #ff78c944;
- cursor:pointer;transition:transform .2s,filter .2s
+
+.screen.active {
+ display: grid;
+ animation: pageIn .8s ease;
 }
-button:hover{transform:translateY(-2px);filter:brightness(1.08)}
-button:active{transform:scale(.97)}
-.gift{
- font-size:clamp(6rem,25vw,9rem);display:inline-block;
- cursor:pointer;user-select:none;filter:drop-shadow(0 12px 20px #ff71bd88);
- animation:giftFloat 2s ease-in-out infinite
+
+.card {
+ width: min(570px, 100%);
+ padding: 35px 23px;
+ text-align: center;
+ border-radius: 30px;
+ border: 1px solid #ffffff45;
+ background: linear-gradient(145deg,#ffffff24,#ffffff0b);
+ box-shadow: 0 20px 70px #0005;
+ backdrop-filter: blur(15px);
 }
-.gift.open{animation:giftPop .75s forwards}
-.dots{color:#ffc3e6;letter-spacing:9px;margin:0 0 18px}
-.progress{
- height:5px;width:min(260px,80%);margin:22px auto 0;
- background:#ffffff28;border-radius:10px;overflow:hidden
+
+.kicker {
+ color: #ffd4ed;
+ font-size: 12px;
+ font-weight: bold;
+ letter-spacing: 4px;
+ text-transform: uppercase;
 }
-.progress span{
- display:block;height:100%;width:var(--w);
- background:linear-gradient(90deg,#ffe18c,#ff83c4,#b99aff);
- border-radius:10px
+
+h1 {
+ color: white;
+ font-size: clamp(40px, 11vw, 68px);
+ line-height: 1.08;
+ text-shadow: 0 0 15px #ff8acb, 0 0 40px #b36bff;
 }
-.letter{padding:18px 16px;margin:18px 0;border-radius:20px;background:#ffffff12;border:1px solid #ffffff26}
-.signature{font-weight:850;color:#ffe18c;font-size:1.12rem}
-.hearts{font-size:1.6rem;letter-spacing:8px;color:#ff9acb;animation:heartbeat 1.6s infinite}
-.footer{font-size:.8rem;color:#d8c9ff;margin-top:22px}
-.sparkle{position:fixed;z-index:4;pointer-events:none;animation:drift 3s ease-out forwards}
-@keyframes pageIn{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes giftFloat{50%{transform:translateY(-14px) rotate(4deg)}}
-@keyframes giftPop{0%{transform:scale(1)}45%{transform:scale(1.35) rotate(-12deg)}100%{transform:scale(.1);opacity:0}}
-@keyframes heartbeat{50%{transform:scale(1.15)}}
-@keyframes drift{to{transform:translateY(105vh) rotate(500deg);opacity:0}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
+h2 {
+ color: #ffe1f3;
+ font-size: clamp(23px, 6vw, 34px);
+}
+
+p {
+ max-width: 470px;
+ margin: 14px auto;
+ color: #fff0fa;
+ font-size: 17px;
+ line-height: 1.8;
+}
+
+button {
+ border: 1px solid #ffffff70;
+ border-radius: 40px;
+ padding: 15px 25px;
+ margin-top: 18px;
+ color: #35103e;
+ background: linear-gradient(100deg,#ffe18b,#ff8dc8,#b69aff);
+ box-shadow: 0 8px 30px #ff75c755;
+ font-size: 16px;
+ font-weight: 900;
+ cursor: pointer;
+ transition: .25s;
+}
+
+button:hover {
+ transform: translateY(-3px) scale(1.03);
+}
+
+button:active {
+ transform: scale(.96);
+}
+
+.emoji {
+ display: block;
+ margin: 15px 0;
+ font-size: clamp(65px,18vw,110px);
+ filter: drop-shadow(0 10px 20px #ff8bce70);
+}
+
+.gift {
+ display: inline-block;
+ font-size: clamp(100px,25vw,145px);
+ cursor: pointer;
+ user-select: none;
+ animation: floating 2s infinite ease-in-out;
+ filter: drop-shadow(0 10px 25px #ff73be99);
+}
+
+.gift.open {
+ animation: giftOpen .7s forwards;
+}
+
+.dots {
+ color: #ffb7e0;
+ letter-spacing: 9px;
+}
+
+.letter {
+ margin: 22px 0;
+ padding: 20px 15px;
+ border-radius: 20px;
+ background: #ffffff13;
+ border: 1px solid #ffffff30;
+}
+
+.signature {
+ color: #ffe18b;
+ font-weight: bold;
+ font-size: 19px;
+}
+
+.progress {
+ height: 5px;
+ width: 75%;
+ margin: 25px auto 0;
+ background: #ffffff30;
+ border-radius: 10px;
+ overflow: hidden;
+}
+
+.progress span {
+ display: block;
+ height: 100%;
+ background: linear-gradient(90deg,#ffcc76,#ff77bb,#a78bfa);
+}
+
+.footer {
+ color: #dfc9f7;
+ font-size: 13px;
+ margin-top: 20px;
+}
+
+/* FINAL CELEBRATION */
+
+#page5 {
+ background:
+ radial-gradient(ellipse at center,#512174aa,transparent 75%);
+}
+
+.party-card {
+ width: 100%;
+ max-width: 950px;
+ text-align: center;
+ padding: 25px 12px;
+}
+
+.party-title {
+ margin: 25px 0;
+ font-size: clamp(48px,12vw,105px);
+ font-weight: 1000;
+ line-height: 1.12;
+ letter-spacing: 2px;
+ color: #fff4c5;
+ text-shadow:
+ 0 0 10px white,
+ 0 0 25px #ffc45c,
+ 0 0 50px #ff55b8,
+ 0 0 100px #a34dff;
+ animation: glowing 1.5s infinite alternate;
+}
+
+.party-title span {
+ display: block;
+ color: #ff9fd9;
+}
+
+.party-message {
+ color: #ffe9fa;
+ font-size: clamp(18px,4vw,27px);
+ text-shadow: 0 0 15px #ff72c8;
+}
+
+.party-small {
+ color: #ffe2a5;
+ letter-spacing: 5px;
+ font-size: 13px;
+ font-weight: bold;
+}
+
+#lightning {
+ position: fixed;
+ inset: 0;
+ z-index: 5;
+ pointer-events: none;
+ opacity: 0;
+ background: white;
+}
+
+#lightning.flash {
+ animation: flash .75s ease-out;
+}
+
+#celebrationIntro,
+#grandFinale {
+ animation: pageIn .8s ease;
+}
+
+[hidden] {
+ display: none !important;
+}
+
+/* ANIMATIONS */
+
+@keyframes pageIn {
+ from {
+  opacity: 0;
+  transform: translateY(20px);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+@keyframes floating {
+ 50% {
+  transform: translateY(-16px) rotate(4deg);
+ }
+}
+
+@keyframes giftOpen {
+ 50% {
+  transform: scale(1.4) rotate(-12deg);
+ }
+ 100% {
+  transform: scale(.1);
+  opacity: 0;
+ }
+}
+
+@keyframes glowing {
+ from {
+  transform: scale(1);
+  filter: brightness(1);
+ }
+ to {
+  transform: scale(1.035);
+  filter: brightness(1.5);
+ }
+}
+
+@keyframes flash {
+ 0%,100% { opacity: 0; }
+ 10% { opacity: .85; }
+ 18% { opacity: 0; }
+ 35% { opacity: .55; }
+ 45% { opacity: 0; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+ *,*::before,*::after {
+  animation-duration:.01ms!important;
+  animation-iteration-count:1!important;
+  scroll-behavior:auto!important;
+ }
+}
 </style>
 </head>
 
 <body>
 
-<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="sky"></canvas>
+<div id="lightning"></div>
 
 <!-- PAGE 1: WELCOME -->
+
 <section class="screen active" id="page1">
  <main class="card">
-  <div class="kicker">A little surprise, made with love</div>
-  <span class="big-emoji">🌙✨🌷</span>
-  <p class="sub">This little universe has one special name tonight…</p>
+
+  <div class="kicker">A surprise made with love</div>
+
+  <div class="emoji">🌙✨🌷</div>
+
+  <p>This little universe has one special name...</p>
+
   <h1>Peshoo</h1>
+
   <h2>Today is all about you! 💖</h2>
-  <p>Some gifts come in boxes. Some are made from memories, kind wishes, and all the love a brother can send.</p>
-  <button onclick="go(2);fireworkShow()">Enter your surprise ✨</button>
-  <div class="footer">A special birthday page, just for you</div>
+
+  <p>
+   Some gifts come in boxes.
+   Some are made from memories,
+   beautiful wishes and love.
+  </p>
+
+  <button onclick="go(2);fireworkShow()">
+   ENTER YOUR SURPRISE ✨
+  </button>
+
+  <div class="footer">
+   A special birthday memory from your brother ❤️
+  </div>
+
  </main>
 </section>
 
-<!-- PAGE 2: GIFT BOX -->
+
+<!-- PAGE 2: THE GIFT -->
+
 <section class="screen" id="page2">
  <main class="card">
+
   <div class="dots">● ○ ○ ○</div>
+
   <div class="kicker">Your surprise is waiting</div>
-  <h2>A little box, with a lot of love</h2>
-  <div class="gift" id="gift" role="button" tabindex="0" aria-label="Open birthday gift" onclick="openGift()">🎁</div>
-  <p id="giftHint">Tap the gift to unwrap your surprise.</p>
-  <button id="giftNext" hidden onclick="go(3);fireworkShow()">See what's inside →</button>
-  <div class="progress"><span style="--w:25%"></span></div>
+
+  <h2>A Little Box, A Lot Of Love</h2>
+
+  <div
+   class="gift"
+   id="gift"
+   role="button"
+   tabindex="0"
+   onclick="openGift()"
+  >🎁</div>
+
+  <p id="giftHint">
+   Tap the gift box to unwrap your surprise!
+  </p>
+
+  <button id="giftNext" hidden onclick="go(3);fireworkShow()">
+   SEE WHAT'S INSIDE →
+  </button>
+
+  <div class="progress">
+   <span style="width:25%"></span>
+  </div>
+
  </main>
 </section>
 
-<!-- PAGE 3: BIRTHDAY WISH -->
+
+<!-- PAGE 3: BIRTHDAY WISHES -->
+
 <section class="screen" id="page3">
  <main class="card">
+
   <div class="dots">● ● ○ ○</div>
+
   <div class="kicker">A wish from the heart</div>
-  <span class="big-emoji">🎂💫</span>
+
+  <div class="emoji">🎂💫</div>
+
   <h1>Happy Birthday!</h1>
+
   <h2>Dear Peshoo 💗</h2>
-  <p>May your days be bright, your heart stay peaceful, and your life be filled with people who make you feel loved. May every new sunrise bring you fresh hope and a reason to smile.</p>
-  <p>Keep being your wonderful self. The world is better with your light in it. 🌸</p>
-  <div class="hearts">♡ ♥ ♡</div>
-  <button onclick="go(4);fireworkShow()">Read your letter 💌</button>
-  <div class="progress"><span style="--w:60%"></span></div>
+
+  <p>
+   May your days be bright,
+   your heart stay peaceful,
+   and your life be filled with people
+   who make you feel loved.
+  </p>
+
+  <p>
+   May every new sunrise bring you
+   fresh hope and a reason to smile.
+  </p>
+
+  <p>
+   Keep shining. The world is better
+   with your light in it. 🌸
+  </p>
+
+  <div class="emoji">♡ ♥ ♡</div>
+
+  <button onclick="go(4);fireworkShow()">
+   READ YOUR LETTER 💌
+  </button>
+
+  <div class="progress">
+   <span style="width:60%"></span>
+  </div>
+
  </main>
 </section>
+
 
 <!-- PAGE 4: BROTHER'S LETTER -->
+
 <section class="screen" id="page4">
  <main class="card">
-  <div class="dots">● ● ● ●</div>
+
+  <div class="dots">● ● ● ○</div>
+
   <div class="kicker">A note from your brother</div>
-  <span class="big-emoji">💌</span>
+
+  <div class="emoji">💌</div>
+
   <h2>Dear Peshoo,</h2>
+
   <div class="letter">
-   <p>Even a thousand words could not explain how special you are to our family. I may not always say it, but I wish you happiness, strength, success, and countless beautiful moments.</p>
-   <p>Whatever dreams you carry in your heart, I hope you get the courage and opportunities to reach them. Keep smiling, keep shining, and always remember that you have a brother cheering for you.</p>
-   <p>Today, this little website is my gift to you — made with code, but sent with genuine love. ❤️</p>
+
+   <p>
+    Even a thousand words could not explain
+    how special you are to our family.
+   </p>
+
+   <p>
+    I may not always say it,
+    but I wish you happiness, strength,
+    success and countless beautiful moments.
+   </p>
+
+   <p>
+    Whatever dreams you carry in your heart,
+    I hope you get the courage and opportunities
+    to reach them.
+   </p>
+
+   <p>
+    Keep smiling, keep shining,
+    and always remember that you have
+    a brother cheering for you.
+   </p>
+
+   <p>
+    This little website is my gift to you.
+    Made with code, but sent with genuine love. ❤️
+   </p>
+
   </div>
-  <p class="signature">With love, Your Brother — Shaifan ❤️</p>
-  <button onclick="finale()">Make the sky sparkle! 🎆</button>
-  <div class="footer">Happy Birthday, Peshoo. You are loved. 💖</div>
+
+  <p class="signature">
+   With love, Your Brother — Shaifan ❤️
+  </p>
+
+  <button onclick="go(5);resetCelebration()">
+   LET'S CELEBRATE! 🎆
+  </button>
+
+  <div class="footer">
+   One last surprise is waiting for you...
+  </div>
+
  </main>
 </section>
 
+
+<!-- PAGE 5: GRAND FINALE -->
+
+<section class="screen" id="page5">
+
+ <main class="party-card">
+
+  <!-- BEFORE CELEBRATION -->
+
+  <div id="celebrationIntro">
+
+   <div class="emoji">🎆🎉🎂</div>
+
+   <div class="party-small">
+    THE MOMENT HAS ARRIVED
+   </div>
+
+   <h2>Are You Ready, Peshoo?</h2>
+
+   <p class="party-message">
+    Let's light up the sky
+    and celebrate your special day!
+   </p>
+
+   <button onclick="startGrandFinale()">
+    LET'S CELEBRATE! 🎆
+   </button>
+
+  </div>
+
+
+  <!-- FINAL FIREWORK SHOW -->
+
+  <div id="grandFinale" hidden>
+
+   <div class="party-small">
+    ✨ TONIGHT IS YOUR NIGHT ✨
+   </div>
+
+   <h1 class="party-title">
+    HAPPY BIRTHDAY
+    <span>TO PEShoo!</span>
+   </h1>
+
+   <div class="emoji">
+    🎂👑💖
+   </div>
+
+   <p class="party-message">
+    May your life shine brighter
+    than every star in the sky!
+   </p>
+
+   <p class="party-message">
+    May happiness follow you
+    wherever life takes you. 🌹
+   </p>
+
+   <p class="signature">
+    WITH LOVE, YOUR BROTHER
+    <br>
+    SHAIFAN ❤️
+   </p>
+
+   <button onclick="startGrandFinale()">
+    CELEBRATE AGAIN! 🎉
+   </button>
+
+  </div>
+
+ </main>
+</section>
+
+
 <script>
-const canvas=document.getElementById('sky');
-const ctx=canvas.getContext('2d');
-let W=0,H=0,particles=[];
 
-function resize(){
- W=innerWidth;
- H=innerHeight;
- canvas.width=W*devicePixelRatio;
- canvas.height=H*devicePixelRatio;
- canvas.style.width=W+'px';
- canvas.style.height=H+'px';
- ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-}
-addEventListener('resize',resize);
-resize();
+/* NAVIGATION */
 
-function launch(x=Math.random()*W,y=H*.35+Math.random()*H*.25){
- const hue=Math.random()*360;
- for(let i=0;i<65;i++){
-  const a=Math.PI*2*i/65;
-  const s=1.2+Math.random()*4;
-  particles.push({
-   x,y,
-   vx:Math.cos(a)*s,
-   vy:Math.sin(a)*s,
-   life:70+Math.random()*35,
-   max:105,
-   hue,
-   size:1.5+Math.random()*2.5
-  });
- }
+function go(number) {
+
+ document.querySelectorAll(".screen").forEach(page => {
+  page.classList.remove("active");
+ });
+
+ document.getElementById("page" + number)
+ .classList.add("active");
+
 }
 
-function fireworkShow(){
- for(let i=0;i<5;i++){
-  setTimeout(
-   ()=>launch(W*(.18+Math.random()*.64),H*(.18+Math.random()*.42)),
-   i*220
-  );
- }
-}
 
-function animate(){
- ctx.clearRect(0,0,W,H);
- particles=particles.filter(p=>p.life>0);
+/* GIFT OPENING */
 
- for(const p of particles){
-  p.x+=p.vx;
-  p.y+=p.vy;
-  p.vy+=.035;
-  p.vx*=.99;
-  p.life--;
+function openGift() {
 
-  ctx.globalAlpha=Math.max(0,p.life/p.max);
-  ctx.fillStyle=`hsl(${p.hue},100%,70%)`;
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-  ctx.fill();
- }
- ctx.globalAlpha=1;
- requestAnimationFrame(animate);
-}
-animate();
+ const gift = document.getElementById("gift");
 
-function go(n){
- document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
- document.getElementById('page'+n).classList.add('active');
-}
+ if(gift.classList.contains("open")) return;
 
-function openGift(){
- const g=document.getElementById('gift');
- if(g.classList.contains('open'))return;
+ gift.classList.add("open");
 
- g.classList.add('open');
- document.getElementById('giftHint').textContent=
- 'Surprise! This gift is filled with love, warm wishes, and a sky full of stars! 💖';
+ document.getElementById("giftHint").innerText =
+ "Surprise! This gift is filled with love, warm wishes and stars! 💖";
 
- confetti(48);
+ confetti(45);
  fireworkShow();
 
- setTimeout(()=>{
-  document.getElementById('giftNext').hidden=false;
+ setTimeout(() => {
+  document.getElementById("giftNext").hidden = false;
  },650);
+
 }
 
-document.getElementById('gift').addEventListener('keydown',e=>{
- if(e.key==='Enter'||e.key===' '){
+document.getElementById("gift").addEventListener("keydown",e=>{
+ if(e.key==="Enter" || e.key===" "){
   e.preventDefault();
   openGift();
  }
 });
 
-function confetti(count){
- const symbols=['💖','✨','🌸','🎀','⭐','💕','🌷'];
 
- for(let i=0;i<count;i++){
-  const el=document.createElement('span');
-  el.className='sparkle';
-  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-  el.style.left=Math.random()*100+'vw';
-  el.style.top='-35px';
-  el.style.fontSize=(16+Math.random()*23)+'px';
-  el.style.animationDuration=(2.5+Math.random()*2.5)+'s';
+/* FIREWORK ENGINE */
 
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),5200);
- }
+const canvas = document.getElementById("sky");
+const ctx = canvas.getContext("2d");
+
+let W = 0;
+let H = 0;
+let particles = [];
+let partyTimer = null;
+let lightningTimer = null;
+let animationFrame = null;
+
+function resize() {
+
+ W = innerWidth;
+ H = innerHeight;
+
+ canvas.width = W * devicePixelRatio;
+ canvas.height = H * devicePixelRatio;
+
+ canvas.style.width = W + "px";
+ canvas.style.height = H + "px";
+
+ ctx.setTransform(
+  devicePixelRatio,0,0,devicePixelRatio,0,0
+ );
+
 }
 
-function finale(){
- go(1);
+addEventListener("resize",resize);
+resize();
+
+
+/* CREATE FIREWORK EXPLOSION */
+
+function launch(x,y) {
+
+ const hue = Math.random() * 360;
+
+ for(let i=0;i<75;i++) {
+
+  const angle = Math.PI * 2 * i / 75;
+  const speed = 1.5 + Math.random() * 4;
+
+  particles.push({
+
+   x:x,
+   y:y,
+
+   vx:Math.cos(angle)*speed,
+   vy:Math.sin(angle)*speed,
+
+   life:80 + Math.random()*35,
+   max:115,
+
+   hue:hue,
+   size:1.5 + Math.random()*2.5
+
+  });
+
+ }
+
+}
+
+
+/* FIREWORK ANIMATION */
+
+function animate() {
+
+ ctx.clearRect(0,0,W,H);
+
+ particles = particles.filter(p => p.life > 0);
+
+ for(const p of particles) {
+
+  p.x += p.vx;
+  p.y += p.vy;
+
+  p.vy += .035;
+  p.vx *= .99;
+
+  p.life--;
+
+  ctx.globalAlpha = Math.max(0,p.life/p.max);
+
+  ctx.fillStyle =
+   `hsl(${p.hue},100%,70%)`;
+
+  ctx.beginPath();
+
+  ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+
+  ctx.fill();
+
+ }
+
+ ctx.globalAlpha = 1;
+
+ animationFrame = requestAnimationFrame(animate);
+
+}
+
+animate();
+
+
+/* SMALL FIREWORK SHOW */
+
+function fireworkShow() {
+
+ for(let i=0;i<5;i++) {
+
+  setTimeout(() => {
+
+   launch(
+    W*(.15+Math.random()*.7),
+    H*(.15+Math.random()*.4)
+   );
+
+  },i*250);
+
+ }
+
+}
+
+
+/* FALLING HEARTS AND CONFETTI */
+
+function confetti(amount) {
+
+ const symbols = [
+  "💖","✨","🌸","🎀","⭐","💕","🌷","🎉"
+ ];
+
+ for(let i=0;i<amount;i++) {
+
+  const item = document.createElement("span");
+
+  item.style.position = "fixed";
+  item.style.zIndex = "4";
+  item.style.pointerEvents = "none";
+
+  item.innerText =
+   symbols[Math.floor(Math.random()*symbols.length)];
+
+  item.style.left = Math.random()*100 + "vw";
+  item.style.top = "-40px";
+
+  item.style.fontSize =
+   (16+Math.random()*25) + "px";
+
+  item.style.transition = "transform 4s linear, opacity 4s";
+
+  document.body.appendChild(item);
+
+  requestAnimationFrame(() => {
+
+   item.style.transform =
+    `translateY(${innerHeight+100}px) rotate(500deg)`;
+
+   item.style.opacity = "0";
+
+  });
+
+  setTimeout(() => item.remove(),4300);
+
+ }
+
+}
+
+
+/* RESET THE FINAL PAGE */
+
+function resetCelebration() {
+
+ clearInterval(partyTimer);
+ clearInterval(lightningTimer);
+
+ partyTimer = null;
+ lightningTimer = null;
+
+ particles = [];
+
+ document.getElementById("celebrationIntro").hidden = false;
+ document.getElementById("grandFinale").hidden = true;
+
+}
+
+
+/* GRAND FINALE */
+
+function startGrandFinale() {
+
+ clearInterval(partyTimer);
+ clearInterval(lightningTimer);
+
+ document.getElementById("celebrationIntro").hidden = true;
+ document.getElementById("grandFinale").hidden = false;
+
+ particles = [];
+
+ const lightning = document.getElementById("lightning");
+
+ // Immediate fireworks
+
  fireworkShow();
+ confetti(100);
 
- for(let i=0;i<8;i++){
-  setTimeout(
-   ()=>launch(W*(.1+Math.random()*.8),H*(.15+Math.random()*.45)),
-   i*280
+ // Continuous fireworks
+
+ partyTimer = setInterval(() => {
+
+  launch(
+   W*(.08+Math.random()*.84),
+   H*(.10+Math.random()*.48)
   );
+
+ },650);
+
+ // Magical sky flashes
+
+ lightningTimer = setInterval(() => {
+
+  lightning.classList.remove("flash");
+
+  void lightning.offsetWidth;
+
+  lightning.classList.add("flash");
+
+ },2200);
+
+ // Grand opening fireworks
+
+ for(let i=0;i<15;i++) {
+
+  setTimeout(() => {
+
+   launch(
+    W*(.08+Math.random()*.84),
+    H*(.10+Math.random()*.48)
+   );
+
+  },i*350);
+
  }
- confetti(90);
+
 }
+
 </script>
 
 </body>
