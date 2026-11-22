@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Peshoo 🎂</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+ margin: 0;
+ min-height: 100vh;
+ font-family: Arial, sans-serif;
+ color: #442747;
+ background: linear-gradient(135deg,#ffe0ef,#eadcff,#e0f4ff);
+ overflow-x: hidden;
+}
+
+.screen {
+ min-height: 100vh;
+ display: none;
+ place-items: center;
+ padding: 25px 16px;
+ text-align: center;
+}
+
+.screen.active {
+ display: grid;
+ animation: fade .7s ease;
+}
+
+.panel {
+ width: min(550px,100%);
+ padding: 32px 22px;
+ border-radius: 28px;
+ background: #ffffffdc;
+ box-shadow: 0 15px 50px #9c5b9b30;
+}
+
+h1 {
+ color: #bd438c;
+ font-size: clamp(35px,8vw,52px);
+}
+
+h2 { color: #8748a5; }
+
+p {
+ font-size: 17px;
+ line-height: 1.7;
+}
+
+.emoji { font-size: 65px; }
+
+button {
+ border: 0;
+ border-radius: 30px;
+ padding: 14px 25px;
+ margin-top: 15px;
+ color: white;
+ font-size: 16px;
+ font-weight: bold;
+ background: linear-gradient(100deg,#ff65a6,#9258df);
+ cursor: pointer;
+}
+
+.gift {
+ font-size: 110px;
+ cursor: pointer;
+ animation: bounce 1.5s infinite;
+}
+
+.gift.open { animation: pop .6s forwards; }
+
+.dots { color: #bb68a9; margin-bottom: 20px; }
+
+.heart { color: #ed66a5; font-size: 25px; }
+
+.signature {
+ color: #a34491;
+ font-weight: bold;
+}
+
+.sparkle {
+ position: fixed;
+ top: -30px;
+ pointer-events: none;
+ animation: fall 3s linear forwards;
+ z-index: 10;
+}
+
+@keyframes fade {
+ from {opacity:0;transform:translateY(15px)}
+ to {opacity:1;transform:translateY(0)}
+}
+
+@keyframes bounce {
+ 50% {transform:translateY(-15px) rotate(4deg)}
+}
+
+@keyframes pop {
+ 50% {transform:scale(1.4) rotate(-10deg)}
+ 100% {transform:scale(.1);opacity:0}
+}
+
+@keyframes fall {
+ to {transform:translateY(110vh) rotate(500deg);opacity:0}
+}
+
+@media(prefers-reduced-motion:reduce) {
+ * {animation-duration:.01ms!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1: WELCOME -->
+
+<section class="screen active" id="s1">
+ <div class="panel">
+  <div class="emoji">✨🎀✨</div>
+  <p>A little surprise has arrived for</p>
+  <h1>Peshoo!</h1>
+  <h2>Someone has a gift for you...</h2>
+  <p>Tap below and discover your birthday surprise. 💗</p>
+  <button onclick="go(2)">Open Your Surprise →</button>
+ </div>
+</section>
+
+<!-- PAGE 2: GIFT BOX -->
+
+<section class="screen" id="s2">
+ <div class="panel">
+  <div class="dots">● ○ ○ ○</div>
+  <h2>Your Birthday Present Is Waiting!</h2>
+
+  <div class="gift" id="gift" onclick="openGift()">🎁</div>
+
+  <p id="hint">Tap the gift box to open it!</p>
+
+  <button id="nextGift" style="display:none"
+  onclick="go(3)">Continue →</button>
+ </div>
+</section>
+
+<!-- PAGE 3: BIRTHDAY -->
+
+<section class="screen" id="s3">
+ <div class="panel">
+  <div class="dots">● ● ○ ○</div>
+  <div class="emoji">🎂</div>
+
+  <h1>Happy Birthday!</h1>
+  <h2>Dear Peshoo ❤️</h2>
+
+  <p>
+   May your new year be filled with happiness,
+   peace, laughter and beautiful surprises.
+   May every beautiful wish in your heart
+   find its way to you.
+  </p>
+
+  <div class="heart">♡ ♡ ♡</div>
+
+  <button onclick="go(4)">One More Thing... →</button>
+ </div>
+</section>
+
+<!-- PAGE 4: BROTHER'S LETTER -->
+
+<section class="screen" id="s4">
+ <div class="panel">
+  <div class="dots">● ● ● ●</div>
+  <div class="emoji">💌</div>
+
+  <h2>A Message From Your Brother</h2>
+
+  <p>Dear Peshoo,</p>
+
+  <p>
+   Today is your special day, and I just want
+   you to know how much you mean to our family.
+   Keep shining, keep smiling, and never stop
+   believing in yourself.
+  </p>
+
+  <p>
+   I hope this little online gift makes your
+   birthday even more beautiful.
+  </p>
+
+  <p class="signature">
+   With love, Your Brother ❤️
+  </p>
+
+  <button onclick="celebrate()">Celebrate Again 🎉</button>
+ </div>
+</section>
+
+<script>
+
+function go(number) {
+ document.querySelectorAll(".screen").forEach(page => {
+  page.classList.remove("active");
+ });
+
+ document.getElementById("s" + number)
+ .classList.add("active");
+
+ if(number === 3) burst(30);
+}
+
+function openGift() {
+ const gift = document.getElementById("gift");
+
+ if(gift.classList.contains("open")) return;
+
+ gift.classList.add("open");
+
+ document.getElementById("hint").innerText =
+ "Surprise! A whole lot of love, wrapped just for you! 💖";
+
+ burst(45);
+
+ setTimeout(() => {
+  document.getElementById("nextGift")
+  .style.display = "inline-block";
+ }, 600);
+}
+
+function burst(amount) {
+ const symbols = ["✨","💖","🌸","🎊","⭐","💕"];
+
+ for(let i=0;i<amount;i++) {
+  const item = document.createElement("span");
+
+  item.className = "sparkle";
+  item.innerText =
+   symbols[Math.floor(Math.random()*symbols.length)];
+
+  item.style.left = Math.random()*100 + "vw";
+  item.style.fontSize = (16+Math.random()*22) + "px";
+  item.style.animationDuration =
+   (2.5+Math.random()*2) + "s";
+
+  document.body.appendChild(item);
+
+  setTimeout(() => item.remove(),5000);
+ }
+}
+
+function celebrate() {
+ burst(70);
+ go(1);
+}
+
+</script>
+
+</body>
+</html>
